@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deteksi Penyakit Kulit</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+      
+    <div class="container">
+        <h1>Diagnosa Penyakit Kulit</h1>
+        <div class="upload-section">
+          <label for="uploadInput" class="upload-label">
+            <span>Upload Gambar</span>
+            <input type="file" id="uploadInput" onchange="displayImage(event)">
+          </label>
+          <button id="detectButton">Diagnosa</button>
+        </div>
+        <div id="imageContainer" class="image-container"></div>
+        <div id="result" class="result-section"></div>
+      </div>
+      
+
+  <script src="script.js"></script>
+  <script src="gambar.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+[
+    {
+      "image": "dataset/bisul.jpg",
+      "label": "BISUL"
+    },
+    {
+      "image": "dataset/cacarair.jpg",
+      "label": "CACAR AIR"
+    },
+    {
+      "image": "dataset/vitiligo.jpg",
+      "label": "VITILIGO"
+    }
+  ]
+  
