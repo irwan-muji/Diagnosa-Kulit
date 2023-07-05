@@ -21,16 +21,22 @@ fetch('model.json')
         function detectSkinDisease() {
           const uploadInput = document.getElementById('uploadInput');
           const resultElement = document.getElementById('result');
+          const explanationElement = document.getElementById('explanation');
+          // const resultElement2 = document.getElementById('result2');
+    
 
           const uploadedImage = uploadInput.files[0];
           if (uploadedImage) {
             const processedImage = processImage(uploadedImage);
 
-            const detectedDisease = performDetection(processedImage, model, dataset); // Call your detection function here
+            const { detectedDisease, explanation } = performDetection(processedImage, model, dataset); // Call your detection function here
 
             resultElement.textContent = `Penyakit kulit tersebut adalah : ${detectedDisease}`;
+            explanationElement.textContent = `${explanation}`;
+            // resultElement2.textContent = `${detectedDisease2}`;
           } else {
             resultElement.textContent = 'No image uploaded.';
+            explanationElement.textContent = '';
           }
         }
 
@@ -47,11 +53,11 @@ fetch('model.json')
             const activation = calculateActivation(imageData, model);
 
             if (activation >= threshold) {
-              return data.label; // Return the detected disease label
+              return { detectedDisease: data.label, explanation: data.label2 }; // Return the detected disease label
             }
           }
 
-          return 'Unknown Disease'; // Return if no disease is detected
+          return { detectedDisease: 'Gagal mendiagnosa', explanation: 'Pastikan foto dengan jelas !' }; // Return if no disease is detected
         }
 
         // Function to Calculate Activation

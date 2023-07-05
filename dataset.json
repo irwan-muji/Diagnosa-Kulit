@@ -1,15 +1,18 @@
 [
     {
-      "image": "dataset/bisul.jpg",
-      "label": "BISUL"
+      "image": "dataset/biduran.jpg",
+      "label": "BIDURAN",
+      "label2": "Biduran adalah ruam kulit yang umumnya dipicu oleh banyak hal, termasuk makanan tertentu, obat-obatan, dan stres. Gejala berupa bekas yang gatal, menonjol, merah, atau berwarna kulit pada permukaan kulit.Biduran biasanya hilang tanpa diobati, tetapi obat antihistamin sering membantu dalam mengurangi gejala."
     },
     {
       "image": "dataset/cacarair.jpg",
-      "label": "CACAR AIR"
+      "label": "CACAR AIR",
+      "label2": "Cacar sangat menular terhadap orang-orang yang belum pernah menderita cacar atau belum divaksinasi cacar. Gejala yang paling khas adalah ruam yang gatal serupa melepuh pada kulit. Cacar air dapat dicegah dengan vaksin. Penanganan yang umum yaitu meredakan gejalanya meskipun kelompok berisiko tinggi mungkin menerima pengobatan antivirus."
     },
     {
       "image": "dataset/vitiligo.jpg",
-      "label": "VITILIGO"
+      "label": "VITILIGO",
+      "label2": "Vitiligo terjadi ketika sel-sel penghasil pigmen mati atau berhenti berfungsi. Hilangnya warna kulit dapat terjadi pada bagian tubuh mana saja, termasuk mulut, rambut, dan mata. Kondisi ini mungkin lebih terlihat pada orang dengan kulit yang lebih gelap. Penanganan dapat memperbaiki penampilan kulit tetapi tidak menyembuhkan penyakit."
     }
   ]
   
