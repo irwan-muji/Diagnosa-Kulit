@@ -17,13 +17,24 @@ fetch('model.json')
           return imagePath;
         }
 
+        // Function to Display Image
+        function displayImage(event) {
+          const imageContainer = document.getElementById('imageContainer');
+          imageContainer.innerHTML = ''; // Clear previous image
+
+          const file = event.target.files[0];
+          const image = document.createElement('img');
+          image.src = URL.createObjectURL(file);
+          image.alt = 'Uploaded Image';
+
+          imageContainer.appendChild(image);
+        }
+
         // Function to Detect Skin Disease
         function detectSkinDisease() {
           const uploadInput = document.getElementById('uploadInput');
           const resultElement = document.getElementById('result');
           const explanationElement = document.getElementById('explanation');
-          // const resultElement2 = document.getElementById('result2');
-    
 
           const uploadedImage = uploadInput.files[0];
           if (uploadedImage) {
@@ -31,42 +42,55 @@ fetch('model.json')
 
             const { detectedDisease, explanation } = performDetection(processedImage, model, dataset); // Call your detection function here
 
-            resultElement.textContent = `Penyakit kulit tersebut adalah : ${detectedDisease}`;
-            explanationElement.textContent = `${explanation}`;
-            // resultElement2.textContent = `${detectedDisease2}`;
+            resultElement.textContent = `Penyakit kulit tersebut adalah: ${detectedDisease}`;
+            explanationElement.textContent = explanation;
           } else {
-            resultElement.textContent = 'No image uploaded.';
+            resultElement.textContent = 'Tidak ada gambar yang diunggah.';
             explanationElement.textContent = '';
           }
         }
 
         // Function to Perform Detection
         function performDetection(image, model, dataset) {
-          // Implement your detection logic using McCulloch-Pitts model and dataset here
-          // Return the detected disease label based on the input image
-
           const threshold = 0.5; // Threshold for activation
 
-          // Perform McCulloch-Pitts detection
-          for (const data of dataset) {
-            const imageData = processImage(new Image(data.image));
-            const activation = calculateActivation(imageData, model);
+          // Process image and calculate activation
+          const processedImage = processImage(image);
+          const activation = calculateActivation(processedImage, model);
 
-            if (activation >= threshold) {
-              return { detectedDisease: data.label, explanation: data.label2 }; // Return the detected disease label
+          // Find the disease label with the highest activation
+          let maxActivation = -Infinity;
+          let detectedDisease = '';
+          let explanation = '';
+
+          for (const data of dataset) {
+            if (activation[data.label] > maxActivation) {
+              maxActivation = activation[data.label];
+              detectedDisease = data.label;
+              explanation = data.label2;
             }
           }
 
-          return { detectedDisease: 'Gagal mendiagnosa', explanation: 'Pastikan foto dengan jelas !' }; // Return if no disease is detected
+          if (maxActivation >= threshold) {
+            return { detectedDisease, explanation };
+          } else {
+            return { detectedDisease: 'Gagal mendiagnosa', explanation: 'Pastikan foto dengan jelas!' };
+          }
         }
 
         // Function to Calculate Activation
         function calculateActivation(imageData, model) {
-          // Implement your McCulloch-Pitts activation logic here
-          // Return the activation value for the given image and model
+          // Implement your activation calculation logic here
+          // Return the activation values for the given image and model
 
           // Example: Placeholder implementation
-          return Math.random(); // Replace this with your actual activation calculation
+          const activation = {};
+
+          for (const label of model.labels) {
+            activation[label] = Math.random(); // Replace this with your actual activation calculation
+          }
+
+          return activation;
         }
 
         // Event Listener for "Deteksi" Button
